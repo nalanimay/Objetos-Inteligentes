@@ -1,0 +1,288 @@
+[
+    {
+        "id": "aef760bc436836cf",
+        "type": "tab",
+        "label": "Fluxo 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "0c7d94ae4fb889e3",
+        "type": "function",
+        "z": "aef760bc436836cf",
+        "name": "function 1",
+        "func": "\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 460,
+        "y": 240,
+        "wires": [
+            [
+                "d26e38e142022b58",
+                "c36a68cc59f75da9"
+            ]
+        ]
+    },
+    {
+        "id": "176297825eb84653",
+        "type": "inject",
+        "z": "aef760bc436836cf",
+        "name": "Ligar",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "1",
+        "payloadType": "str",
+        "x": 130,
+        "y": 140,
+        "wires": [
+            [
+                "0c7d94ae4fb889e3"
+            ]
+        ],
+        "info": "if (msg.payload == 1) {\nmsg.payload = \"Ligado\"\n}\nelse if (msg.payload == 0) {\nmsg.payload = \"Desligado\"\n}\nreturn msg;"
+    },
+    {
+        "id": "d26e38e142022b58",
+        "type": "mqtt out",
+        "z": "aef760bc436836cf",
+        "name": "sistem out",
+        "topic": "",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "",
+        "x": 690,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "c36a68cc59f75da9",
+        "type": "debug",
+        "z": "aef760bc436836cf",
+        "name": "Mensagem recebida",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 670,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "d7d307ae5034d04e",
+        "type": "inject",
+        "z": "aef760bc436836cf",
+        "name": "Desligar",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "0",
+        "payloadType": "str",
+        "x": 140,
+        "y": 260,
+        "wires": [
+            [
+                "0c7d94ae4fb889e3"
+            ]
+        ]
+    },
+    {
+        "id": "7e360e879c6b566e",
+        "type": "mqtt in",
+        "z": "aef760bc436836cf",
+        "name": "",
+        "topic": "objetos42148146\\sensor1",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "90b8e7b904460573",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 190,
+        "y": 400,
+        "wires": [
+            [
+                "c664429995e049a8",
+                "90b10ff1166058bc",
+                "47d73829fcdedb23",
+                "ed90def280a1191c"
+            ]
+        ]
+    },
+    {
+        "id": "c664429995e049a8",
+        "type": "debug",
+        "z": "aef760bc436836cf",
+        "name": "Mensagem recebida",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 560,
+        "y": 460,
+        "wires": []
+    },
+    {
+        "id": "90b10ff1166058bc",
+        "type": "node-red-contrib-whatsapp-cmb-send-message",
+        "z": "aef760bc436836cf",
+        "name": "",
+        "credtype": "account",
+        "account": "",
+        "text": "",
+        "phonenumbervalue": "",
+        "apikeyvalue": "",
+        "apikeyinputtypemessage": "msg",
+        "phonenumberinputtypemessage": "msg",
+        "inputtypemessage": "str",
+        "rejectssl": false,
+        "x": 540,
+        "y": 360,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "47d73829fcdedb23",
+        "type": "e-mail",
+        "z": "aef760bc436836cf",
+        "server": "smtp.gmail.com",
+        "port": "465",
+        "authtype": "BASIC",
+        "saslformat": true,
+        "token": "oauth2Response.access_token",
+        "secure": true,
+        "tls": true,
+        "name": "may.nakandakare@gmail.com",
+        "dname": "",
+        "x": 610,
+        "y": 540,
+        "wires": []
+    },
+    {
+        "id": "6ceab6bc9d695c17",
+        "type": "influxdb in",
+        "z": "aef760bc436836cf",
+        "influxdb": "1c9dc96010ddc39d",
+        "name": "01eb1b429588690b",
+        "query": "api token: RglTg8Z4dQnWeIu2M46evUso8GU1WHVxXfJFI9aqABfBjhnwZqG5aLn_XrzbxgSj-V5lO4CJwcuJrI_lTFp8vQ==",
+        "rawOutput": false,
+        "precision": "",
+        "retentionPolicy": "",
+        "org": "organisation",
+        "x": 400,
+        "y": 660,
+        "wires": [
+            []
+        ],
+        "inputLabels": [
+            "RglTg8Z4dQnWeIu2M46evUso8GU1WHVxXfJFI9aqABfBjhnwZqG5aLn_XrzbxgSj-V5lO4CJwcuJrI_lTFp8vQ=="
+        ]
+    },
+    {
+        "id": "ed90def280a1191c",
+        "type": "function",
+        "z": "aef760bc436836cf",
+        "name": "function 2",
+        "func": "\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 290,
+        "y": 540,
+        "wires": [
+            [
+                "6ceab6bc9d695c17"
+            ]
+        ]
+    },
+    {
+        "id": "90b8e7b904460573",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "broker.hivemq.com",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "1c9dc96010ddc39d",
+        "type": "influxdb",
+        "hostname": "127.0.0.1",
+        "port": "8086",
+        "protocol": "http",
+        "database": "database",
+        "name": "01eb1b429588690b",
+        "usetls": true,
+        "tls": "",
+        "influxdbVersion": "1.x",
+        "url": "http://localhost:8086",
+        "rejectUnauthorized": true
+    }
+]
