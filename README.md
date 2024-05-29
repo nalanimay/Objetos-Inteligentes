@@ -1,0 +1,2 @@
+<h1>Descrição do Projeto</h1>
+O alimentador automatizado possui funcionalidades avançadas, como o envio de notificações via API do WhatsApp ao proprietário cada vez que o gato é alimentado. Utilizando Node-RED para automação e InfluxDB para armazenamento de dados, o sistema monitora detalhadamente os padrões de alimentação dos gatos. As informações são visualizadas em tempo real através de uma dashboard no Grafana. 
